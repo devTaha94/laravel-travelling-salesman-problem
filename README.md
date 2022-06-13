@@ -64,4 +64,5 @@ use Ahmedtaha\TravellingSalesman\Services\Concrete\TspBranchBound;
 #
 
 #References
-https://www.srimax.com/2016/07/05/travelling-salesman-problem-using-branch-bound-approach-php/ 
+- https://en.wikipedia.org/wiki/Travelling_salesman_problem
+- https://www.srimax.com/2016/07/05/travelling-salesman-problem-using-branch-bound-approach-php/ 
