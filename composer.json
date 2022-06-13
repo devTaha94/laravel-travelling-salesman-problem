@@ -1,0 +1,27 @@
+{
+    "name": "ahmedtaha/travelling-salesman-path",
+    "description": "The travelling salesman problem asks the following question: \"Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city",
+    "autoload": {
+        "psr-4": {
+            "Ahmedtaha\\TravellingSalesman\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ahmed Taha",
+            "email": "ahmed.taha.ibrahim.94@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers" : [
+                "Ahmedtaha\\TravellingSalesman\\TravellingSalesmanServiceProvider"
+            ]
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    }
+}
