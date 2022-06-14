@@ -48,32 +48,34 @@ class TspLocation implements ITspLocation
         $lang = 'ar';
         if ($latitudeFrom === $longitudeFrom && $latitudeTo === $longitudeTo) return 0;
 
-        $google_key       = config('tsp.google_api_key');
-        if($google_key !== ''){
-            $url              = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=".$latitudeFrom.",".$longitudeFrom."&destinations=".$latitudeTo.",".$longitudeTo."&mode=driving&language=".$lang."&key=".$google_key;
-            $ch               = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            $result           = curl_exec($ch);
-            curl_close($ch);
-            $response         = json_decode($result, true);
-            if(isset($response['rows']) && $response['rows'][0]){
-                if($response['rows'][0]['elements'][0]['status'] === 'ZERO_RESULTS' || ($response['rows'][0]['elements'][0]['status'] === 'NOT_FOUND') ){
-                    $distance = self::directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
-                    $distance = $distance * 1000; // in meter
+            $google_key       = config('tsp.google_api_key');
+            if($google_key !== ''){
+                $url              = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=".$latitudeFrom.",".$longitudeFrom."&destinations=".$latitudeTo.",".$longitudeTo."&mode=driving&language=".$lang."&key=".$google_key;
+                $ch               = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+                $result           = curl_exec($ch);
+                curl_close($ch);
+                $response         = json_decode($result, true);
+                if(isset($response['rows']) ){
+                    if($response['rows'][0]['elements'][0]['status'] === 'ZERO_RESULTS' || ($response['rows'][0]['elements'][0]['status'] === 'NOT_FOUND') ){
+                        $distance = self::directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
+                        $distance = $distance * 1000; // in meter
+                    }else{
+                        $distance = $response['rows'][0]['elements'][0]['distance']['value'];     # in Meter
+                    }
                 }else{
-                    $distance = $response['rows'][0]['elements'][0]['distance']['value'];     # in Meter
+                    $distance     = self::directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
+                    $distance     = $distance * 1000;  # in Meter
                 }
             }else{
-                $distance     = self::directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
-                $distance     = $distance * 1000;  # in Meter
+                $distance  = self::directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
+                $distance  = $distance * 1000;  # in Meter
             }
-        }else{
-            $distance = self::directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
-        }
+
         $in_kms       = ($distance / 1000);# in kms
         return  round($in_kms, 2);
     }
