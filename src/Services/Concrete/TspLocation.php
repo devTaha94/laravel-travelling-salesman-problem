@@ -45,6 +45,7 @@ class TspLocation implements ITspLocation
      */
     public static function distance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $unit = 'M')
     {
+        $lang = 'ar';
         if ($latitudeFrom === $longitudeFrom && $latitudeTo === $longitudeTo) return 0;
 
         $google_key       = 'AIzaSyBl_DF-MUpMKwIQkAiOrXWZoQcia1Bqm08';
