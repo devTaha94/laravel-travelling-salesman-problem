@@ -15,7 +15,7 @@ composer require ahmedtaha/travelling-salesman-path
 ```php
        use Ahmedtaha\TravellingSalesman\Services\Concrete\TspBranchBound;
 
-       $instance       = TspBranchBound::getInstance();
+       $instance        = TspBranchBound::getInstance();
        
        #add starting point coordination
        $instance->addLocation([
@@ -26,29 +26,20 @@ composer require ahmedtaha/travelling-salesman-path
       
        #add array of another points coordination
       $instance->addLocation([
-        [
-            'id'        => 'Cairo',
-            'latitude'  => 30.0444,
-            'longitude' => 31.2357
-        ],
-        [
-            'id'        => 'Alexandria',
-            'latitude'  => 32.9440,
-            'longitude' => 85.9539
-        ],[
+       [
             'id'        => 'Tanta',
             'latitude'  => 30.7865,
             'longitude' => 31.0004
         ],
         [
-            'id'        => 'Damanhur',
-            'latitude'  => 31.0425,
-            'longitude' => 30.4728
+            'id'        => 'Ismailia',
+            'latitude'  => 30.5965,
+            'longitude' => 32.2715
         ],
         [
-            'id'        => 'Port Said',
-            'latitude'  => 30.4660,
-            'longitude' => 31.1848
+            'id'        => 'Damietta',
+            'latitude'  => 31.4175,
+            'longitude' => 31.8144
         ]
     ]);
     
@@ -59,30 +50,30 @@ composer require ahmedtaha/travelling-salesman-path
 
 ```json
 {
-"cost"      : 1090.9038456170401,
-"locations" : [
-{
- "latitude" : 31.0409,
- "longitude": 31.3785,
- "id"       : "Mansoura"
-},
-{
-"latitude"  : 30.466,
-"longitude" : 31.1848,
-"id"        : "Port Said"
-},
-{
-"latitude"  : 30.0444,
-"longitude" : 31.2357,
-"id": "Cairo"
-},
-{
-"latitude"  : 32.944,
-"longitude" : 85.9539,
-"id"        : "Alexandria"
-}
-],
-"path": "Mansoura -> Port Said , Port Said -> Damanhur , Damanhur -> Cairo , Cairo -> Alexandria , Alexandria -> Tanta , Tanta -> Mansoura "
+  "cost": 495.6299999999999,
+  "locations": [
+    {
+      "latitude" : 31.0409,
+      "longitude": 31.3785,
+      "id"       : "Mansoura"
+    },
+    {
+      "latitude" : 31.4175,
+      "longitude": 31.8144,
+      "id"       : "Damietta"
+    },
+    {
+      "latitude" : 30.7865,
+      "longitude": 31.0004,
+      "id"       : "Tanta"
+    },
+    {
+      "latitude" : 30.5965,
+      "longitude": 32.2715,
+      "id"       : "Ismailia"
+    }
+  ],
+  "path": "Mansoura -> Damietta , Damietta -> Tanta , Tanta -> Ismailia , Ismailia -> Mansoura"
 }
 ```
 #Follow me 

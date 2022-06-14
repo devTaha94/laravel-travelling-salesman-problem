@@ -84,7 +84,6 @@ class TspBranchBound implements ITspBranchBound
                     $loc1 = $this->locations[$i];
                     $loc2 = $this->locations[$j];
                     $distance = TspLocation::distance($loc1->latitude, $loc1->longitude, $loc2->latitude, $loc2->longitude,'K');
-
                 }
                 $this->costMatrix[$i][$j] = $distance;
             }
@@ -184,6 +183,7 @@ class TspBranchBound implements ITspBranchBound
             }
         }
 
+
         $costMatrix = $this->costMatrix;
         $pq         = new PqTsp();
         $root       = new TspNode($costMatrix, null, 0, -1, 0);
@@ -205,8 +205,8 @@ class TspBranchBound implements ITspBranchBound
 
 
                 return array (
-                    'cost'      => $min->cost,
-                    'locations' =>   $this->arrangedPlaces,
+                    'cost'     =>   $min->cost,
+                    'locations'=>   $this->arrangedPlaces,
                     'path'     =>   $this->printPath($min->path),
                 );
             }
