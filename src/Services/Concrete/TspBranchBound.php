@@ -203,12 +203,11 @@ class TspBranchBound implements ITspBranchBound
 
                $this->printPath($min->path);
 
-               $this->arrangedPlaces[] = $this->arrangedPlaces[0];
 
                 return array (
                     'cost'      => $min->cost,
                     'locations' =>   $this->arrangedPlaces,
-                     'path'     =>   $this->printPath($min->path),
+                    'path'     =>   $this->printPath($min->path),
                 );
             }
 
