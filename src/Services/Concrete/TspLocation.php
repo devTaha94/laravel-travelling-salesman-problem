@@ -68,7 +68,7 @@ class TspLocation implements ITspLocation
                 $distance = $response['rows'][0]['elements'][0]['distance']['value'];     # in Meter
             }
         }else{
-            $distance     = directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
+            $distance     = self::directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
             $distance     = $distance * 1000;  # in Meter
         }
         $in_kms           = ($distance / 1000);# in kms
@@ -90,7 +90,7 @@ class TspLocation implements ITspLocation
 //            return $miles;
     }
 
-   public function directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo){
+   public  static function directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo){
         $earthRadius         = 6371000;
         // convert from degrees to radians
         $latFrom             = deg2rad($latitudeFrom);
