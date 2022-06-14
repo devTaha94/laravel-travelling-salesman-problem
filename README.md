@@ -7,7 +7,17 @@ You can install the package via [Composer](https://getcomposer.org).
 ```bash
 composer require ahmedtaha/travelling-salesman-path
 ```
+Publish your oto config file with
 
+```bash
+php artisan vendor:publish --provider="Ahmedtaha\TravellingSalesman\TravellingSalesmanServiceProvider" --tag="tsp"
+```
+
+If you want to calculate distance using google places driving distance
+change your tsp config from config/tsp.php file or i will calculate direct distance automatically
+```php
+    "google_api_key"     => "", // google places paid key
+```
 ## Usage
 
 - The problem is to find the shorter route for desired locations. let’s consider some cities you’ve to visit. you should be visit all cities once with a least cost.
