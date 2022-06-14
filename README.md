@@ -13,7 +13,7 @@ composer require ahmedtaha/travelling-salesman-path
 - The problem is to find the shorter route for desired locations. let’s consider some cities you’ve to visit. you should be visit all cities once with a least cost.
 
 ```php
-use Ahmedtaha\TravellingSalesman\Services\Concrete\TspBranchBound;
+       use Ahmedtaha\TravellingSalesman\Services\Concrete\TspBranchBound;
 
        $instance       = TspBranchBound::getInstance();
        
