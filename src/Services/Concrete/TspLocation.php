@@ -48,9 +48,8 @@ class TspLocation implements ITspLocation
         $lang = 'ar';
         if ($latitudeFrom === $longitudeFrom && $latitudeTo === $longitudeTo) return 0;
 
-        $google_key       = 'AIzaSyBl_DF-MUpMKwIQkAiOrXWZoQcia1Bqm08';
+        $google_key       = config('tsp.google_api_key');
         $url              = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=".$latitudeFrom.",".$longitudeFrom."&destinations=".$latitudeTo.",".$longitudeTo."&mode=driving&language=".$lang."&key=".$google_key;
-
         $ch               = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -73,21 +72,6 @@ class TspLocation implements ITspLocation
         }
         $in_kms           = ($distance / 1000);# in kms
         return  round($in_kms, 2);
-
-
-
-//        $theta = $latitudeFrom - $latitudeTo;
-//        $dist  = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) + cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
-//        $dist  = acos($dist);
-//        $dist  = rad2deg($dist);
-//        $miles = $dist * 60 * 1.1515;
-//        $unit  = strtoupper($unit);
-//        if ($unit === "K")
-//            return ($miles * 1.609344);
-//        else if ($unit === "N")
-//            return ($miles * 0.8684);
-//        else
-//            return $miles;
     }
 
     public  static function directDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo){
